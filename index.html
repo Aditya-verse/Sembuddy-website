@@ -1,169 +1,171 @@
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SemBuddy | Your Smart Engineering Companion</title>
-    <meta name="description" content="Calculate marks, track attendance, and view syllabus with SemBuddy - The ultimate app for engineering students." />
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SemBuddy | Your Smart Engineering Companion</title>
+<meta name="description" content="Calculate marks, track attendance, and view syllabus with SemBuddy - The ultimate app for engineering students." />
 
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            fontFamily: {
-              sans: ['Inter', 'sans-serif'],
-              display: ['Poppins', 'sans-serif'],
-                display: ['Your Font Name', 'sans-serif'],
-            },
-            colors: {
-              brand: {
-                dark: '#020617', // Slate 950
-                card: '#0f172a', // Slate 900
-                blue: '#3b82f6',
-                teal: '#2dd4bf',
-                green: '#4ade80',
-                'brand-dark': '#020617', // slate-950
-      'brand-blue': '#3b82f6', // blue-500
-      'brand-teal': '#2dd4bf', // teal-400
-      'brand-green': '#4ade80',
-              }
-            },
-            animation: {
-              'blob': 'blob 7s infinite',
-              'float': 'float 6s ease-in-out infinite',
-              'spin-slow': 'spin 12s linear infinite',
-            },
-            keyframes: {
-              blob: {
-                '0%': { transform: 'translate(0px, 0px) scale(1)' },
-                '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
-                '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
-                '100%': { transform: 'translate(0px, 0px) scale(1)' },
-              },
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-20px)' },
-              }
-            }
-          }
-        }
-      }
-    </script>
-    
-    <style>
-      body {
-        background-color: #020617;
-        color: #f8fafc;
-        overflow-x: hidden;
-      }
-      
-      /* Smooth Scrolling & Navbar Offset */
-      html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 100px; /* Prevents navbar from covering titles */
-      }
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
 
-      /* Custom Scrollbar */
-      ::-webkit-scrollbar {
-        width: 10px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #020617; 
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #1e293b; 
-        border-radius: 5px;
-        border: 2px solid #020617;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #334155; 
-      }
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 
-      /* Glassmorphism Utilities */
-      .glass {
-        background: rgba(255, 255, 255, 0.03);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-      }
-      
-      .glass-card {
-        background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.4) 100%);
-        backdrop-filter: blur(12px);
-        border: 1px solid rgba(255, 255, 255, 0.08);
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      }
-
-      /* Neon Border Effect */
-      .neon-border {
-        position: relative;
-        z-index: 0;
-        overflow: hidden;
-      }
-      .neon-border::before {
-        content: "";
-        position: absolute;
-        inset: -2px;
-        background: linear-gradient(45deg, #3b82f6, #2dd4bf, #4ade80);
-        z-index: -1;
-        filter: blur(15px);
-        opacity: 0.6;
-        transition: opacity 0.3s ease;
-      }
-      
-      /* Text Gradients */
-      .text-gradient {
-        background: linear-gradient(to right, #3b82f6, #2dd4bf, #4ade80);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        color: transparent;
-      }
-
-      .text-gradient-sub {
-        background: linear-gradient(to right, #94a3b8, #cbd5e1);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-        color: transparent;
-      }
-
-      /* 3D Animation Helpers */
-      .perspective-1000 {
-        perspective: 1000px;
-      }
-      .preserve-3d {
-        transform-style: preserve-3d;
-      }
-    </style>
-  <script type="importmap">
-{ 
-  "imports": {
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
-    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
-    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
-    "firebase/app": "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js",
-    "firebase/auth": "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js",
-    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/"
-  }
+<script>
+tailwind.config = {
+darkMode: 'class',
+theme: {
+extend: {
+fontFamily: {
+sans: ['Inter', 'sans-serif'],
+display: ['Poppins', 'sans-serif'],
+display: ['Your Font Name', 'sans-serif'],
+},
+colors: {
+brand: {
+dark: '#020617', // Slate 950
+card: '#0f172a', // Slate 900
+blue: '#3b82f6',
+teal: '#2dd4bf',
+green: '#4ade80',
+'brand-dark': '#020617', // slate-950
+'brand-blue': '#3b82f6', // blue-500
+'brand-teal': '#2dd4bf', // teal-400
+'brand-green': '#4ade80',
+}
+},
+animation: {
+'blob': 'blob 7s infinite',
+'float': 'float 6s ease-in-out infinite',
+'spin-slow': 'spin 12s linear infinite',
+},
+keyframes: {
+blob: {
+'0%': { transform: 'translate(0px, 0px) scale(1)' },
+'33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+'66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+'100%': { transform: 'translate(0px, 0px) scale(1)' },
+},
+float: {
+'0%, 100%': { transform: 'translateY(0)' },
+'50%': { transform: 'translateY(-20px)' },
+}
+}
+}
+}
 }
 </script>
+
+<style>
+body {
+background-color: #020617;
+color: #f8fafc;
+overflow-x: hidden;
+}
+
+/* Smooth Scrolling & Navbar Offset */
+html {
+scroll-behavior: smooth;
+scroll-padding-top: 100px; /* Prevents navbar from covering titles */
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+width: 10px;
+}
+::-webkit-scrollbar-track {
+background: #020617; 
+}
+::-webkit-scrollbar-thumb {
+background: #1e293b; 
+border-radius: 5px;
+border: 2px solid #020617;
+}
+::-webkit-scrollbar-thumb:hover {
+background: #334155; 
+}
+
+/* Glassmorphism Utilities */
+.glass {
+background: rgba(255, 255, 255, 0.03);
+backdrop-filter: blur(16px);
+-webkit-backdrop-filter: blur(16px);
+border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-card {
+background: linear-gradient(180deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.4) 100%);
+backdrop-filter: blur(12px);
+border: 1px solid rgba(255, 255, 255, 0.08);
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Neon Border Effect */
+.neon-border {
+position: relative;
+z-index: 0;
+overflow: hidden;
+}
+.neon-border::before {
+content: "";
+position: absolute;
+inset: -2px;
+background: linear-gradient(45deg, #3b82f6, #2dd4bf, #4ade80);
+z-index: -1;
+filter: blur(15px);
+opacity: 0.6;
+transition: opacity 0.3s ease;
+}
+
+/* Text Gradients */
+.text-gradient {
+background: linear-gradient(to right, #3b82f6, #2dd4bf, #4ade80);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+color: transparent;
+}
+
+.text-gradient-sub {
+background: linear-gradient(to right, #94a3b8, #cbd5e1);
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
+color: transparent;
+}
+
+/* 3D Animation Helpers */
+.perspective-1000 {
+perspective: 1000px;
+}
+.preserve-3d {
+transform-style: preserve-3d;
+}
+</style>
+
 <link rel="stylesheet" href="/index.css">
+<script type="importmap">
+{
+{ 
+"imports": {
+"react/": "https://aistudiocdn.com/react@^19.2.0/",
+"react": "https://aistudiocdn.com/react@^19.2.0",
+"react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+"framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+"lucide-react": "https://aistudiocdn.com/lucide-react@^0.555.0",
+"firebase/app": "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js",
+"firebase/auth": "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js",
+"firebase/": "https://aistudiocdn.com/firebase@^12.6.0/"
+}
+}
+</script>
+  <script type="module" crossorigin src="/SemBuddy/assets/index-DsojTHZP.js"></script>
+  <script type="module" crossorigin src="/sembuddy/assets/index-DsojTHZP.js"></script>
 </head>
-  <body class="antialiased selection:bg-brand-teal selection:text-brand-dark">
-    <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
+<body class="antialiased selection:bg-brand-teal selection:text-brand-dark">
+<div id="root"></div>
 </body>
-</html>
