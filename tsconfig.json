@@ -4,40 +4,18 @@
     "experimentalDecorators": true,
     "useDefineForClassFields": false,
     "module": "ESNext",
-<<<<<<< HEAD
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
     "types": ["vite/client", "node"],
-=======
-    "lib": [
-      "ES2022",
-      "DOM",
-      "DOM.Iterable"
-    ],
-    "skipLibCheck": true,
-    "types": [
-      "node"
-    ],
->>>>>>> 963564cf257c0260b367bed0e719edb9155624e2
     "moduleResolution": "bundler",
     "isolatedModules": true,
     "moduleDetection": "force",
     "allowJs": true,
     "jsx": "react-jsx",
     "paths": {
-<<<<<<< HEAD
       "@/*": ["./*"]
-=======
-      "@/*": [
-        "./*"
-      ]
->>>>>>> 963564cf257c0260b367bed0e719edb9155624e2
     },
     "allowImportingTsExtensions": true,
     "noEmit": true
   }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 963564cf257c0260b367bed0e719edb9155624e2
