@@ -18,6 +18,9 @@ View your app in AI Studio: https://ai.studio/apps/drive/1Iclj6HcnZIUqOjas8jr_yf
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+<<<<<<< HEAD
 
 # SemBuddy
 SemBuddy is a student-focused academic website that helps simplify semester preparation by providing organized resources, clear navigation, and a responsive, modern interface for efficient learning.
+=======
+>>>>>>> 963564cf257c0260b367bed0e719edb9155624e2
